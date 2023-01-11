@@ -5,8 +5,7 @@ import styled from "styled-components";
 import axios from "axios";
 export default function Logout() {
   const navigate = useNavigate();
-  const handleClick =  () => {
-
+  const handleClick = () => {
     localStorage.clear();
     navigate("/login");
   };
