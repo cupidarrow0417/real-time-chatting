@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -54,16 +53,20 @@ export default function Chats() {
   };
 
   return (
-    <Container>
-      <div className="container">
+    <div className="h-screen w-screen flex flex-col justify-center gap-4 items-center bg-[#131324]">
+      <div className="h-5/6 w-5/6 bg-[#00000076] grid grid-cols-5 md:grid-cols-3 lg:grid-cols-4">
         {isLoaded && currentChat === undefined ? (
-          <Welcome currentUser={currentUser} />
+          <div className="col-span-4 md:col-span-2 lg:col-span-3">
+            <Welcome currentUser={currentUser} />
+          </div>
         ) : (
-          <ChatContainer
-            currentChat={currentChat}
-            socket={socket}
-            currentUser={currentUser}
-          />
+          <div className="col-span-4 md:col-span-2 lg:col-span-3">
+            <ChatContainer
+              currentChat={currentChat}
+              socket={socket}
+              currentUser={currentUser}
+            />
+          </div>
         )}
         <Contacts
           contacts={contacts}
@@ -71,27 +74,6 @@ export default function Chats() {
           changeChat={handleChatChange}
         />
       </div>
-    </Container>
+    </div>
   );
 }
-
-const Container = styled.div`
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 1rem;
-  align-items: center;
-  background-color: #131324;
-  .container {
-    height: 85vh;
-    width: 85vw;
-    background-color: #00000076;
-    display: grid;
-    grid-template-columns: 75% 25%;
-    @media screen and (min-width: 720px) and (max-width: 1080px) {
-      grid-template-columns: 65% 35%;
-    }
-  }
-`;

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "../assets/logo.svg";
 import { ToastContainer, toast } from "react-toastify";
@@ -64,13 +63,17 @@ const Login = () => {
 
   return (
     <>
-      <FormContainer>
-        <form onSubmit={(e) => handleSubmit(e)}>
-          <div className="brand">
-            <img src={Logo} alt="Logo" />
-            <h1>RChat</h1>
+      <div className="h-screen w-screen flex flex-col justify-center gap-4 items-center bg-[#131324]">
+        <form
+          className="flex flex-col gap-8 bg-[#00000076] px-12 py-20 rounded-[32px]"
+          onSubmit={(e) => handleSubmit(e)}
+        >
+          <div className="flex items-center gap-1 justify-center">
+            <img className="h-20" src={Logo} alt="Logo" />
+            <h1 className="text-white capitalize">RChat</h1>
           </div>
           <input
+            className="bg-transparent p-4 border border-solid border-[#4e0eff] rounded-md text-white w-full text-base focus:border-2 focus:border-solid focus:border-[#997af0] focus:outline-none"
             type="text"
             placeholder="Username"
             name="username"
@@ -78,87 +81,28 @@ const Login = () => {
             min="3"
           />
           <input
+            className="bg-transparent p-4 border border-solid border-[#4e0eff] rounded-md text-white w-full text-base focus:border-2 focus:border-solid focus:border-[#997af0] focus:outline-none"
             type="password"
             placeholder="Password"
             name="password"
             onChange={(e) => handleChange(e)}
           />
-          <button type="submit">Login</button>
-          <span>
-            Don't have an account? <Link to="/register">Register</Link>
+          <button
+            className="bg-[#4e0eff] text-white px-8 py-4 border-0 font-bold cursor-pointer rounded-md text-base uppercase hover:bg-[#3d12b3]"
+            type="submit"
+          >
+            Login
+          </button>
+          <span className="text-white uppercase">
+            Don't have an account?{" "}
+            <Link to="/register" className="text-[#4e0eff] font-bold">
+              Register
+            </Link>
           </span>
         </form>
-      </FormContainer>
+      </div>
       <ToastContainer />
     </>
   );
 };
-
-const FormContainer = styled.div`
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 1rem;
-  align-items: center;
-  background-color: #131324;
-  .brand {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    justify-content: center;
-    img {
-      height: 5rem;
-    }
-    h1 {
-      color: white;
-      text-transform: capitalize;
-    }
-  }
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    background-color: #00000076;
-    border-radius: 2rem;
-    padding: 3rem 5rem;
-  }
-  input {
-    background-color: transparent;
-    padding: 1rem;
-    border: 0.1rem solid #4e0eff;
-    border-radius: 0.4rem;
-    color: white;
-    width: 100%;
-    font-size: 1rem;
-    &:focus {
-      border: 0.1rem solid #997af0;
-      outline: none;
-    }
-  }
-  button {
-    background-color: #4e0eff;
-    color: white;
-    padding: 1rem 2rem;
-    border: none;
-    font-weight: bold;
-    cursor: pointer;
-    border-radius: 0.4rem;
-    font-size: 1rem;
-    text-transform: uppercase;
-    &:hover {
-      background-color: #3d12b3;
-    }
-  }
-  span {
-    color: white;
-    text-transform: uppercase;
-    a {
-      color: #4e0eff;
-      text-decoration: none;
-      font-weight: bold;
-    }
-  }
-`;
 export default Login;

@@ -8,6 +8,7 @@ export default function Contacts({ contacts, currentUser, changeChat }) {
   const [currentSelected, setCurrentSelected] = useState(undefined);
 
   useEffect(() => {
+    console.log(contacts);
     if (currentUser) {
       setCurrentUserImage(currentUser.avatarImage);
       setCurrentUserName(currentUser.username);
@@ -38,12 +39,19 @@ export default function Contacts({ contacts, currentUser, changeChat }) {
                 >
                   <div className="avatar">
                     <img
-                      src={`data:image/svg+xml;base64,${contact.avatarImage}`}
+                      // src={`data:image/svg+xml;base64,${contact.avatarImage}`}
+                      src={
+                        contact.isGroup
+                          ? "group.png"
+                          : `data:image/svg+xml;base64,${contact.avatarImage}`
+                      }
                       alt="avatar"
                     />
                   </div>
                   <div className="username">
-                    <h3>{contact.username}</h3>
+                    <h3>
+                      {contact.isGroup ? contact.groupname : contact.username}
+                    </h3>
                   </div>
                 </div>
               );
